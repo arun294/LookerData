@@ -48,7 +48,13 @@ explore: store_returns {}
 
 explore: store_returns_bkp {}
 
-explore: store_sales {}
+explore: store_sales {
+  join:  customer{
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${store_sales.ss_store_sk} = ${customer.c_customer_sk} ;;
+  }
+}
 
 explore: store_sales_bkp {}
 
